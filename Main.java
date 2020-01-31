@@ -6,22 +6,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import gui.JframeImagen;
+
 public class Main {
 
     public static void main(String[] args) {
 
         Image imagen = AbrirImagen.openImage();
-        JLabel etiqueta = new JLabel(new ImageIcon(imagen));
-        JFrame frame = new JFrame(); 
-        frame.add(etiqueta);
-        frame.setSize(imagen.getWidth(null),imagen.getHeight(null));
-        frame.setVisible(true);
+        JframeImagen frame = new JframeImagen(imagen);
         BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
-        int rgb = bi.getRGB(50,50);
-        Color color = new Color(rgb);
-        int r = color.getRed();
-        int g = color.getGreen();
-        int b = color.getBlue();
+        Color color = new Color(57,255,20);
+        bi.setRGB(50,50,color.getRGB());
+        JframeImagen frame2 = new JframeImagen(AbrirImagen.toImage(bi));
+       
         System.out.println();
 
     }
