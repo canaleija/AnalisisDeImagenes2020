@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import analisisespacial.Histogramas;
 import gui.JframeImagen;
 
 public class Main {
@@ -14,10 +15,12 @@ public class Main {
 
         Image imagen = AbrirImagen.openImage();
         JframeImagen frame = new JframeImagen(imagen);
-        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
-        Color color = new Color(57,255,20);
-        bi.setRGB(50,50,color.getRGB());
-        JframeImagen frame2 = new JframeImagen(AbrirImagen.toImage(bi));
+        Histogramas hi = new Histogramas(imagen);
+        hi.graficarHistogramaGrises();
+        hi.graficarHistogramaAzul();
+        hi.graficarHistogramaRojo();
+        hi.graficarHistogramaVerde();
+        hi.graficarHistogramas();
        
         System.out.println();
 
