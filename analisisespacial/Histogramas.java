@@ -3,6 +3,7 @@ package analisisespacial;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
+import org.jfree.chart.plot.XYPlot;
 
 import open.AbrirImagen;
 
@@ -37,39 +38,55 @@ public class Histogramas{
             }
     } 
    
-    public void graficarHistogramas(){
-        Grafica aux = new Grafica("Tono","Intesidad","Frecuencias");
-        aux.agregarSerie("Rojos",this.hRojo);
-        aux.agregarSerie("Azules",this.hAzul);
-        aux.agregarSerie("Verdes",this.hVerde);
-        aux.crearYmostrarGrafica();
-               
-    } 
-    public void graficarHistogramaRojo(){
-        Grafica aux = new Grafica("Tono","Intesidad","Frecuencias");
-        aux.agregarSerie("Rojos",this.hRojo);
-        aux.crearYmostrarGrafica();
+    
+    public void Graph(){
+        Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
+        graph.agregarSerie("Rojo", hRojo);
+        graph.agregarSerie("Azul", hAzul);
+        graph.agregarSerie("Verde",hVerde);
         
-    } 
-    public void graficarHistogramaVerde(){
-        Grafica aux = new Grafica("Tono","Intesidad","Frecuencias");
-        aux.agregarSerie("Verdes",this.hVerde);
-        aux.crearYmostrarGrafica();
-        
-    } 
-    public void graficarHistogramaAzul(){
-        Grafica aux = new Grafica("Tono","Intesidad","Frecuencias");
-        aux.agregarSerie("Azules",this.hAzul);
-        aux.crearYmostrarGrafica();
-        
-    } 
+        graph.crearGrafica();
 
-    public void graficarHistogramaGrises(){
-        Grafica aux = new Grafica("Tono","Intesidad","Frecuencias");
-        aux.agregarSerie("Grises",this.hGrises);
-        aux.crearYmostrarGrafica();
-        
-    } 
-
+        XYPlot plot = graph.getGrafica().getXYPlot();
+        plot.getRenderer().setSeriesPaint(0, new Color(Color.RED.getRGB()));
+        plot.getRenderer().setSeriesPaint(1, new Color(Color.BLUE.getRGB()));
+        plot.getRenderer().setSeriesPaint(2, new Color(Color.GREEN.getRGB()));
+        graph.muestraGrafica();
+//           plot.getRenderer().setSeriesPaint(0, new Color(Color.RED.getRGB()));
+ }
+ 
+ public void GraphGrey(){
+        Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de grises");
+        graph.agregarSerie("Gris", hGrises );
+        graph.crearGrafica();
+        XYPlot plot = graph.getGrafica().getXYPlot();
+        plot.getRenderer().setSeriesPaint(0, new Color(Color.DARK_GRAY.getRGB()));
+        graph.muestraGrafica();
+ }
+ 
+ public void GraphRed(){
+        Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
+        graph.agregarSerie("Rojo", hRojo);
+        graph.crearGrafica();
+        XYPlot plot = graph.getGrafica().getXYPlot();
+        plot.getRenderer().setSeriesPaint(0, new Color(Color.RED.getRGB()));
+        graph.muestraGrafica();
+ }
+ public void GraphBlue(){
+        Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
+        graph.agregarSerie("Azul", hAzul);
+        graph.crearGrafica();
+        XYPlot plot = graph.getGrafica().getXYPlot();
+        plot.getRenderer().setSeriesPaint(0, new Color(Color.BLUE.getRGB()));
+        graph.muestraGrafica();
+ }
+ public void GraphGreen(){
+        Grafica graph = new Grafica("Magnitud","Frecuencia","Histograma de imagen");
+        graph.agregarSerie("Verde", hVerde);
+        graph.crearGrafica();
+        XYPlot plot = graph.getGrafica().getXYPlot();
+        plot.getRenderer().setSeriesPaint(0, new Color(Color.GREEN.getRGB()));
+        graph.muestraGrafica();
+ }
 
 }

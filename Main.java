@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import analisisespacial.FiltrosEspaciales;
 import analisisespacial.Histogramas;
 import gui.JframeImagen;
 
@@ -15,12 +16,11 @@ public class Main {
 
         Image imagen = AbrirImagen.openImage();
         JframeImagen frame = new JframeImagen(imagen);
-        Histogramas hi = new Histogramas(imagen);
-        hi.graficarHistogramaGrises();
-        hi.graficarHistogramaAzul();
-        hi.graficarHistogramaRojo();
-        hi.graficarHistogramaVerde();
-        hi.graficarHistogramas();
+        Image imagenGrises = FiltrosEspaciales.generarImagenGrises(imagen);
+        JframeImagen frame2 = new JframeImagen(imagenGrises);
+        Image imagenN = FiltrosEspaciales.generarImagenNegativa(imagen);
+        JframeImagen frame3 = new JframeImagen(imagenN);
+       
        
         System.out.println();
 
