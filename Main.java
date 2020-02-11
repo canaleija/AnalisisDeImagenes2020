@@ -16,10 +16,9 @@ public class Main {
 
         Image imagen = AbrirImagen.openImage();
         JframeImagen frame = new JframeImagen(imagen);
-        Image imagenGrises = FiltrosEspaciales.generarImagenGrises(imagen);
-        JframeImagen frame2 = new JframeImagen(imagenGrises);
-        Image imagenN = FiltrosEspaciales.generarImagenNegativa(imagen);
-        JframeImagen frame3 = new JframeImagen(imagenN);
+        Image imagenI = FiltrosEspaciales.modificarTemperatura(imagen,-60);
+        JframeImagen frame2 = new JframeImagen(imagenI);
+       
        
        
         System.out.println();
