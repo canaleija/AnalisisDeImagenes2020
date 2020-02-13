@@ -16,8 +16,13 @@ public class Main {
 
         Image imagen = AbrirImagen.openImage();
         JframeImagen frame = new JframeImagen(imagen);
-        Image imagenI = FiltrosEspaciales.modificarTemperatura(imagen,-60);
-        JframeImagen frame2 = new JframeImagen(imagenI);
+        Histogramas aux = new Histogramas(imagen);
+        aux.Graph();
+    
+        Image imagenS = FiltrosEspaciales.segmentarImagen(imagen,40);
+        JframeImagen frame2 = new JframeImagen(imagenS);
+        aux = new Histogramas(imagenS);
+        aux.Graph();
        
        
        
