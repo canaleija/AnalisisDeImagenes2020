@@ -98,4 +98,21 @@ public class FiltrosEspaciales{
         }
         return AbrirImagen.toImage(bi);
     }
+
+    public static Image segmentarImagen(Image imagen, int u1, int u2){
+        // TODO: garantizar  que el u2>u1
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
+        Color color, colorFondo;
+        colorFondo = new Color(255,255,255);
+        for(int x=0; x<bi.getWidth();x++)
+            for(int y=0; y<bi.getHeight();y++){
+            color = new Color(bi.getRGB(x, y));
+            int prom = (color.getRed()+ color.getGreen()+color.getBlue())/3;
+            if (!(prom>= u1 && prom<=u2)){
+                bi.setRGB(x,y,colorFondo.getRGB());
+            }
+                       
+        }
+        return AbrirImagen.toImage(bi);
+    }
 }

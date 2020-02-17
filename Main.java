@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 
 import analisisespacial.FiltrosEspaciales;
 import analisisespacial.Histogramas;
+import gui.JFrameSegmentacion;
 import gui.JframeImagen;
 
 public class Main {
@@ -15,14 +16,8 @@ public class Main {
     public static void main(String[] args) {
 
         Image imagen = AbrirImagen.openImage();
-        JframeImagen frame = new JframeImagen(imagen);
-        Histogramas aux = new Histogramas(imagen);
-        aux.Graph();
-    
-        Image imagenS = FiltrosEspaciales.segmentarImagen(imagen,40);
-        JframeImagen frame2 = new JframeImagen(imagenS);
-        aux = new Histogramas(imagenS);
-        aux.Graph();
+        JFrameSegmentacion frame = new JFrameSegmentacion("Segementacion",imagen);
+        
        
        
        

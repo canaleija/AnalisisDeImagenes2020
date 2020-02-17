@@ -2,6 +2,8 @@
     "java.dependency.syncWithFolderExplorer": true,
     "java.dependency.packagePresentation": "hierarchical",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "c:\\Users\\CRUZLEIJA\\Documents\\Visual Code\\libs\\jcommon-1.0.23.jar",
+        "c:\\Users\\CRUZLEIJA\\Documents\\Visual Code\\libs\\jfreechart-1.0.19.jar"
     ]
 }
