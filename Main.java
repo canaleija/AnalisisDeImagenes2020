@@ -16,6 +16,8 @@ public class Main {
     public static void main(String[] args) {
 
         Image imagen = AbrirImagen.openImage();
+        Histogramas h = new  Histogramas(imagen);
+        h.Graph(); 
         JFrameSegmentacion frame = new JFrameSegmentacion("Segementacion",imagen);
         
        

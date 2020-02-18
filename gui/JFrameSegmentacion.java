@@ -9,9 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.GridLayout;
+import java.awt.BorderLayout;
 
 public class JFrameSegmentacion extends JFrame {
 
@@ -33,9 +35,9 @@ public class JFrameSegmentacion extends JFrame {
 
     private void initcomponents(){
         // layout
-        setLayout(new GridLayout(4,1));
+        setLayout(new BorderLayout());
         this.labelImagen = new JLabel(new ImageIcon(this.imagenEscalada));
-        add(this.labelImagen);
+        add(this.labelImagen, BorderLayout.CENTER);
         this.sliderU1 = new JSlider();
         this.sliderU1.setMinimum(0);
         this.sliderU1.setMaximum(255);
@@ -53,12 +55,15 @@ public class JFrameSegmentacion extends JFrame {
         this.sliderU2.setMinorTickSpacing(1);
         this.sliderU2.setMajorTickSpacing(25);
         // modificar el escuchador de los slider
-        add(this.sliderU1);
-        add(this.sliderU2);
+        JPanel panel = new JPanel(new GridLayout(3,1)); 
+        panel.add(this.sliderU1);
+        panel.add(this.sliderU2);
+        
         this.btnAbrir = new JButton("Segmentar");
         SegmentacionListener lis = new SegmentacionListener(this);
         this.btnAbrir.addActionListener(lis);
-        add(this.btnAbrir);
+        panel.add(this.btnAbrir);
+        add(panel, BorderLayout.SOUTH);
     }
 
     public JSlider getJSliderU1(){
