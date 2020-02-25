@@ -13,10 +13,14 @@ public class Histogramas{
     private double hVerde[];
     private double hAzul[];
     private double hGrises[];
+    private Integer minR,maxR;
+    private Integer minG,maxG;
+    private Integer minB,maxB;
 
 
     public Histogramas(Image imagen){
         this.hRojo = new double[256];
+      
         this.hVerde = new double[256];
         this.hAzul = new double[256];
         this.hGrises = new double[256];
@@ -36,6 +40,8 @@ public class Histogramas{
                 int prom = (aux.getRed()+aux.getGreen()+aux.getBlue())/3;
                 this.hGrises[prom]++;
             }
+    
+        calcularMinimosYMaximos();    
     } 
    
     
@@ -89,4 +95,41 @@ public class Histogramas{
         graph.muestraGrafica();
  }
 
+ private void calcularMinimosYMaximos(){
+    this.minR = -1;
+    this.minG = -1;
+    this.minB = -1;
+    this.maxR = 256;
+    this.maxG = 256;
+    this.maxB = 256;
+
+    for(int t1 = 0, t2= hRojo.length-1; minR==-1 || maxR==256 ;t1++,t2--){
+        if(hRojo[t1]!=0 && minR ==-1){
+            minR = t1;
+        }
+        if(hRojo[t2]!=0 && maxR==256){
+            maxR = t2;
+        }
+       
+    }
+    
+   
+
+ }
+  
+    public double[] getHRed(){
+        return this.hRojo;
+    }
+    public double[] getHBlue(){
+        return this.hAzul;
+    }
+    public double[] getGreen(){
+        return this.hVerde;
+    }
+    public int getMinR(){
+        return this.minR;
+    }
+    public int getMaxR(){
+        return this.maxR;
+    }
 }

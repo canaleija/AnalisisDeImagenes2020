@@ -56,6 +56,42 @@ public class FiltrosEspaciales{
         return AbrirImagen.toImage(bi);
     }
 
+    public static Image expansionLineal(int r1, int r2, Image imagen){
+
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
+        Color color;
+        for(int x=0; x<bi.getWidth();x++)
+            for(int y=0; y<bi.getHeight();y++){
+            color = new Color(bi.getRGB(x, y));
+            int r = (color.getRed()-r1)*(255/r2-r1);
+            int g = (color.getGreen()-r1)*(255/r2-r1);
+            int b = (color.getBlue()-r1)*(255/r2-r1);
+            color = new Color(validarLimites(r),
+            validarLimites(g),
+            validarLimites(b));
+            bi.setRGB(x,y,color.getRGB());
+        }
+        return AbrirImagen.toImage(bi);
+    }
+
+    public static Image expansionLineal(Histogramas h, Image imagen){
+
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
+        Color color;
+        for(int x=0; x<bi.getWidth();x++)
+            for(int y=0; y<bi.getHeight();y++){
+            color = new Color(bi.getRGB(x, y));
+           // int r = (color.getRed()-)*(255/r2-r1);
+           // int g = (color.getGreen()-r1)*(255/r2-r1);
+           // int b = (color.getBlue()-r1)*(255/r2-r1);
+           // color = new Color(validarLimites(r),
+           // validarLimites(g),
+           // validarLimites(b));
+           // bi.setRGB(x,y,color.getRGB());
+        }
+        return AbrirImagen.toImage(bi);
+    }
+
     public static Image modificarTemperatura(Image imagen, int alpha){
 
         BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
@@ -80,6 +116,22 @@ public class FiltrosEspaciales{
         if (aux>255)return 255;
         return aux;
 
+    }
+
+    public static int obtenerMin(double[] h){
+
+        for(int x=0; x<h.length;x++){
+            if(h[x]!=0) return x;
+        }
+     return -1;
+    }
+
+    public static int obtenerMax(double[] h){
+
+        for(int x=h.length-1; x>=0;x--){
+            if(h[x]!=0) return x;
+        }
+     return -1;
     }
 
     public static Image segmentarImagen(Image imagen, int umbral){

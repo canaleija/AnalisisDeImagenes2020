@@ -17,9 +17,14 @@ public class Main {
 
         Image imagen = AbrirImagen.openImage();
         Histogramas h = new  Histogramas(imagen);
-        h.Graph(); 
-        JFrameSegmentacion frame = new JFrameSegmentacion("Segementacion",imagen);
+        h.GraphRed();; 
+        int min = h.getMinR();
+        int max = h.getMaxR();
+        JFrameSegmentacion frameIO = new JFrameSegmentacion("original", imagen);
         
+        // Image imagenExp = FiltrosEspaciales.expansionLineal(min, max, imagen);
+        // Histogramas h2 = new  Histogramas(imagenExp);
+        // h2.Graph(); 
        
        
        
