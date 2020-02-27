@@ -81,13 +81,13 @@ public class FiltrosEspaciales{
         for(int x=0; x<bi.getWidth();x++)
             for(int y=0; y<bi.getHeight();y++){
             color = new Color(bi.getRGB(x, y));
-           // int r = (color.getRed()-)*(255/r2-r1);
-           // int g = (color.getGreen()-r1)*(255/r2-r1);
-           // int b = (color.getBlue()-r1)*(255/r2-r1);
-           // color = new Color(validarLimites(r),
-           // validarLimites(g),
-           // validarLimites(b));
-           // bi.setRGB(x,y,color.getRGB());
+            int r = (color.getRed()-h.getMinR())*(255/h.getMaxR()-h.getMinR());
+            int g = (color.getGreen()-h.getMinG())*(255/h.getMaxG()-h.getMinG());
+            int b = (color.getBlue()-h.getMinB())*(255/h.getMaxB()-h.getMinB());
+             color = new Color(validarLimites(r),
+             validarLimites(g),
+             validarLimites(b));
+             bi.setRGB(x,y,color.getRGB());
         }
         return AbrirImagen.toImage(bi);
     }

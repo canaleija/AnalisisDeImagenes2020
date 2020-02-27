@@ -17,11 +17,13 @@ public class Main {
 
         Image imagen = AbrirImagen.openImage();
         Histogramas h = new  Histogramas(imagen);
-        h.GraphRed();; 
-        int min = h.getMinR();
-        int max = h.getMaxR();
-        JFrameSegmentacion frameIO = new JFrameSegmentacion("original", imagen);
-        
+        h.Graph();
+        JframeImagen fi = new JframeImagen(imagen);
+        Image contraste = FiltrosEspaciales.expansionLineal(h, imagen);
+        JframeImagen fic = new JframeImagen(contraste);
+        Histogramas h1 = new  Histogramas(contraste);
+        h1.Graph();
+       
         // Image imagenExp = FiltrosEspaciales.expansionLineal(min, max, imagen);
         // Histogramas h2 = new  Histogramas(imagenExp);
         // h2.Graph(); 

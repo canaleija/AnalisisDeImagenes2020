@@ -112,8 +112,28 @@ public class Histogramas{
         }
        
     }
+
+    for(int t1 = 0, t2= hVerde.length-1; minG==-1 || maxG==256 ;t1++,t2--){
+        if(hVerde[t1]!=0 && minG ==-1){
+            minG = t1;
+        }
+        if(hVerde[t2]!=0 && maxG==256){
+            maxG = t2;
+        }
+       
+    }
+
+    for(int t1 = 0, t2= hAzul.length-1; minB==-1 || maxB==256 ;t1++,t2--){
+        if(hAzul[t1]!=0 && minB ==-1){
+            minB = t1;
+        }
+        if(hAzul[t2]!=0 && maxB==256){
+            maxB = t2;
+        }
+       
+    }
     
-   
+   System.out.println();
 
  }
   
@@ -131,5 +151,19 @@ public class Histogramas{
     }
     public int getMaxR(){
         return this.maxR;
+    }
+
+    public int getMinG(){
+        return this.minG;
+    }
+    public int getMaxG(){
+        return this.maxG;
+    }
+
+    public int getMinB(){
+        return this.minB;
+    }
+    public int getMaxB(){
+        return this.maxB;
     }
 }
