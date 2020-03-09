@@ -173,15 +173,16 @@ public class FiltrosEspaciales{
         int nxm = imagen.getWidth(null)*imagen.getHeight(null);
         Histogramas h = new Histogramas(imagen);
         double[] ho = h.getHRed();
-        int[] daf = new int[256];
+        double[] daf = new double[256];
         int[] nt = new int[256];
         daf[0] = (int)ho[0];
-        nt[0] = Math.round((daf[0]/nxm)*255);
+        nt[0] = (int)Math.round((daf[0]/nxm)*255);
         // recorremos el histograma para acumular
         for(int x=1; x<ho.length;x++){
             daf[x] = (int)(ho[x]+daf[x-1]);
-            double tmp = Math.round((daf[x]/nxm)*255);
-            nt[x] =(int) tmp;
+            double aux = daf[x]/nxm;
+            int tmp = (int) Math.round(aux * 255);
+            nt[x] = tmp;
         }
 
         BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
