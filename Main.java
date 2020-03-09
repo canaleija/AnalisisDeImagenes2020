@@ -16,14 +16,14 @@ public class Main {
     public static void main(String[] args) {
 
         Image imagen = AbrirImagen.openImage();
-        Histogramas h = new  Histogramas(imagen);
-        h.Graph();
-        JframeImagen fi = new JframeImagen(imagen);
-        Image contraste = FiltrosEspaciales.expansionLineal(h, imagen);
-        JframeImagen fic = new JframeImagen(contraste);
-        Histogramas h1 = new  Histogramas(contraste);
-        h1.Graph();
-       
+        Image grises = FiltrosEspaciales.generarImagenGrises(imagen);
+        JframeImagen frame = new JframeImagen(grises);
+        Histogramas ho = new Histogramas(grises);
+        ho.GraphGrey();
+        Image e = FiltrosEspaciales.ecualizarImagen(grises);
+        JframeImagen frame2 = new JframeImagen(e);
+        Histogramas he = new Histogramas(e);
+        he.GraphGrey();
         // Image imagenExp = FiltrosEspaciales.expansionLineal(min, max, imagen);
         // Histogramas h2 = new  Histogramas(imagenExp);
         // h2.Graph(); 

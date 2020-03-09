@@ -167,4 +167,36 @@ public class FiltrosEspaciales{
         }
         return AbrirImagen.toImage(bi);
     }
+
+    public static Image ecualizarImagen(Image imagen){
+    
+        int nxm = imagen.getWidth(null)*imagen.getHeight(null);
+        Histogramas h = new Histogramas(imagen);
+        double[] ho = h.getHRed();
+        int[] daf = new int[256];
+        int[] nt = new int[256];
+        daf[0] = (int)ho[0];
+        nt[0] = Math.round((daf[0]/nxm)*255);
+        // recorremos el histograma para acumular
+        for(int x=1; x<ho.length;x++){
+            daf[x] = (int)(ho[x]+daf[x-1]);
+            double tmp = Math.round((daf[x]/nxm)*255);
+            nt[x] =(int) tmp;
+        }
+
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
+        Color color;
+        for(int x=0; x<bi.getWidth();x++)
+            for(int y=0; y<bi.getHeight();y++){
+            color = new Color(bi.getRGB(x, y));
+            int t = color.getRed();
+            int t2 =nt[t];
+            color = new Color(t2,t2,t2);     
+            bi.setRGB(x,y,color.getRGB());
+        }
+
+        
+        return AbrirImagen.toImage(bi);
+
+    }
 }
