@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 
 import analisisespacial.FiltrosEspaciales;
 import analisisespacial.Histogramas;
+import analisisespacial.Suavizado;
 import gui.JFrameSegmentacion;
 import gui.JframeImagen;
 
@@ -16,14 +17,19 @@ public class Main {
     public static void main(String[] args) {
 
         Image imagen = AbrirImagen.openImage();
-        Image grises = FiltrosEspaciales.generarImagenGrises(imagen);
-        JframeImagen frame = new JframeImagen(grises);
-        Histogramas ho = new Histogramas(grises);
-        ho.GraphGrey();
-        Image e = FiltrosEspaciales.ecualizarImagen(grises);
-        JframeImagen frame2 = new JframeImagen(e);
-        Histogramas he = new Histogramas(e);
-        he.GraphGrey();
+        JframeImagen frame = new JframeImagen(imagen);
+        Histogramas ho = new Histogramas(imagen);
+        ho.Graph();
+
+        Image ruidoA = Suavizado.agregarRuidoAditivo(imagen, 5);
+        JframeImagen frame2 = new JframeImagen(ruidoA);
+        Histogramas hra = new Histogramas(ruidoA);
+        hra.Graph();
+
+        Image ruidoS = Suavizado.agregarRuidoSustractivo(imagen, 5);
+        JframeImagen frame3 = new JframeImagen(ruidoS);
+        Histogramas hrs = new Histogramas(ruidoS);
+        hrs.Graph();
         // Image imagenExp = FiltrosEspaciales.expansionLineal(min, max, imagen);
         // Histogramas h2 = new  Histogramas(imagenExp);
         // h2.Graph(); 
