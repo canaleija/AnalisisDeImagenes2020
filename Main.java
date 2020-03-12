@@ -21,15 +21,16 @@ public class Main {
         Histogramas ho = new Histogramas(imagen);
         ho.Graph();
 
-        Image ruidoA = Suavizado.agregarRuidoAditivo(imagen, 5);
-        JframeImagen frame2 = new JframeImagen(ruidoA);
-        Histogramas hra = new Histogramas(ruidoA);
-        hra.Graph();
-
-        Image ruidoS = Suavizado.agregarRuidoSustractivo(imagen, 5);
-        JframeImagen frame3 = new JframeImagen(ruidoS);
+        Image ruidoS = Suavizado.agregarRuidoSustractivo(imagen, 1);
+        JframeImagen frame2 = new JframeImagen(ruidoS);
         Histogramas hrs = new Histogramas(ruidoS);
         hrs.Graph();
+
+        int[][] mascara = new int[][]{{1,1,1},{1,0,1},{1,0,1}};
+        Image imagenSuavizada = Suavizado.suavizar(ruidoS, mascara);
+        JframeImagen frame3 = new JframeImagen(imagenSuavizada);
+        Histogramas his = new Histogramas(imagenSuavizada);
+        his.Graph();
         // Image imagenExp = FiltrosEspaciales.expansionLineal(min, max, imagen);
         // Histogramas h2 = new  Histogramas(imagenExp);
         // h2.Graph(); 
